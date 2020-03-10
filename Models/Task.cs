@@ -1,8 +1,11 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace my_todo.Models
 {
     public class Task
     {
         public long Id { get; set; }
+        [Required]
         public string Content { get; set; }
         public string OwnerId { get; set; }
         public bool IsDone { get; set; }
