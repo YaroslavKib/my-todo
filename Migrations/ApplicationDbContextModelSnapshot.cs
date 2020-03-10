@@ -296,7 +296,7 @@ namespace my_todo.Migrations
 
             modelBuilder.Entity("my_todo.Models.Task", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -320,7 +320,7 @@ namespace my_todo.Migrations
 
             modelBuilder.Entity("my_todo.Models.TaskList", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 

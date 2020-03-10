@@ -9,7 +9,7 @@ namespace my_todo.Models
         public string Content { get; set; }
         public string OwnerId { get; set; }
         public bool IsDone { get; set; }
-        public int TaskListId { get; set; }
+        public long TaskListId { get; set; }
 
         public Task() { }
 

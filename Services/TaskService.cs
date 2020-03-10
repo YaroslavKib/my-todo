@@ -32,6 +32,19 @@ namespace my_todo.Services
             return GetByOwnerId(ownerId);
         }
 
+        public IEnumerable<Task> Put(long id, Task req)
+        {
+            var task = _context.Tasks.First(t => t.Id == id);
+
+            task.Content = req.Content;
+            task.IsDone = req.IsDone;
+            task.TaskListId = req.TaskListId;
+
+            _context.SaveChanges();
+
+            return GetByOwnerId(task.OwnerId);
+        }
+
         public IEnumerable<Task> DeleteAll(string ownerId)
         {
             _context.Tasks.RemoveRange(_context.Tasks);

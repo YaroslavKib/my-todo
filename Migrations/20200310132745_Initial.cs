@@ -84,7 +84,7 @@ namespace my_todo.Migrations
                 name: "TaskLists",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     OwnerId = table.Column<string>(nullable: true)
                 },
@@ -97,7 +97,7 @@ namespace my_todo.Migrations
                 name: "Tasks",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Content = table.Column<string>(nullable: false),
                     OwnerId = table.Column<string>(nullable: true),

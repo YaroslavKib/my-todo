@@ -9,7 +9,7 @@ using my_todo.Data;
 namespace my_todo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200310130315_Initial")]
+    [Migration("20200310132745_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -298,7 +298,7 @@ namespace my_todo.Migrations
 
             modelBuilder.Entity("my_todo.Models.Task", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -322,7 +322,7 @@ namespace my_todo.Migrations
 
             modelBuilder.Entity("my_todo.Models.TaskList", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
