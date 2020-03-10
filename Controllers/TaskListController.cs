@@ -13,27 +13,36 @@ namespace my_todo.Controllers
     [Route("api/[controller]")]
     public class TaskListController : ControllerBase
     {
-        private readonly ILogger<TaskListController> _logger;
+        private readonly Services.TaskListService _service;
 
-        public TaskListController(ILogger<TaskListController> logger)
+        private string UserId = "dev_test_owner_id"; // for testing
+
+        public TaskListController(Services.TaskListService taskListService)
         {
-            _logger = logger;
+            _service = taskListService;
         }
 
         [HttpGet("")]
         public ActionResult Get()
         {
-            return Problem("Not implemented");
+            return Ok(_service.GetByOwnerId(UserId));
         }
 
         [HttpGet("{id}")]
         public ActionResult GetById(long id)
         {
-            return Problem("Not implemented");
+            return Ok(_service.GetById(id));
         }
 
-        [HttpPut("")]
-        public ActionResult Put(string content)
+        [HttpPost("")]
+        public ActionResult Post(Models.TaskList taskList)
+        {
+            taskList.OwnerId = UserId;
+            return Ok(_service.Add(taskList));
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult Put(long id, Models.TaskList taskList)
         {
             return Problem("Not implemented");
         }

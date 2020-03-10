@@ -49,7 +49,7 @@ namespace my_todo
                 configuration.RootPath = "ClientApp/build";
             });
 
-            services.AddScoped<TaskListSerivce, TaskListSerivce>();
+            services.AddScoped<TaskListService, TaskListService>();
             services.AddScoped<TaskService, TaskService>();
         }
 

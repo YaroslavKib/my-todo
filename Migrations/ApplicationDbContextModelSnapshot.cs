@@ -296,7 +296,7 @@ namespace my_todo.Migrations
 
             modelBuilder.Entity("my_todo.Models.Task", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -310,7 +310,7 @@ namespace my_todo.Migrations
                     b.Property<string>("OwnerId")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("TaskListId")
+                    b.Property<long>("TaskListId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -320,9 +320,12 @@ namespace my_todo.Migrations
 
             modelBuilder.Entity("my_todo.Models.TaskList", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("OwnerId")
                         .HasColumnType("TEXT");
