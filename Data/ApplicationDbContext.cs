@@ -17,5 +17,8 @@ namespace my_todo.Data
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
+
+        public DbSet<Models.TaskList> TaskLists { get; set; }
+        public DbSet<Models.Task> Tasks { get; set; }
     }
 }
