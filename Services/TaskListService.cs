@@ -18,6 +18,17 @@ namespace my_todo.Services
         {
             return _context.TaskLists.First(t => t.Id == id);
         }
+
+        public IEnumerable<TaskList> Put(long id, TaskList req)
+        {
+            var taskList = _context.TaskLists.First(t => t.Id == id);
+
+            taskList.Name = req.Name;
+
+            _context.SaveChanges();
+
+            return GetByOwnerId(taskList.OwnerId);
+        }
         
         public IEnumerable<TaskList> GetByOwnerId(string ownerId)
         {

@@ -49,7 +49,7 @@ namespace my_todo.Services
         {
             _context.Tasks.RemoveRange(_context.Tasks);
             _context.SaveChanges();
-
+ 
             return GetByOwnerId(ownerId);
         }
 

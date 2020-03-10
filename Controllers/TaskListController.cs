@@ -44,7 +44,7 @@ namespace my_todo.Controllers
         [HttpPut("{id}")]
         public ActionResult Put(long id, Models.TaskList taskList)
         {
-            return Problem("Not implemented");
+            return Ok(_service.Put(id, taskList));
         }
 
         [HttpDelete("{id}")]
