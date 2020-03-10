@@ -15,7 +15,7 @@ namespace my_todo.Controllers
     {
         private readonly Services.TaskService _taskService;
 
-        private string UserId = "1"; // for testing
+        private string UserId = "dev_test_owner_id"; // for testing
 
         public TaskController(Services.TaskService taskSerivce)
         {
@@ -35,11 +35,10 @@ namespace my_todo.Controllers
         }
 
         [HttpPost("")]
-        public ActionResult Post(string content)
+        public ActionResult Post(Models.Task task)
         {
-            return Ok(_taskService.Add(new Models.Task(0, content, UserId, false, 0)));
-            //task.OwnerId = UserId;
-            //return Ok(_taskService.Add(task));
+            task.OwnerId = UserId;
+            return Ok(_taskService.Add(task));
         }
 
         [HttpPut("{id}")]
@@ -48,10 +47,16 @@ namespace my_todo.Controllers
             return Problem("Not implemented");
         }
 
+        [HttpDelete("")]
+        public ActionResult Delete()
+        {
+            return Ok(_taskService.DeleteAll(UserId));
+        }
+
         [HttpDelete("{id}")]
         public ActionResult DeleteById(long id)
         {
-            return Problem("Not implemented");
+            return Ok(_taskService.Delete(id, UserId));
         }
     }
 }

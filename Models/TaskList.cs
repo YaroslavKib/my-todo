@@ -5,7 +5,7 @@ namespace my_todo.Models
     public class TaskList
     {
         public long Id { get; set; }
-        public List<Task> Tasks { get; } = new List<Task>();
+        public List<long> TaskIds { get; } = new List<long>();
         public string OwnerId { get; set; }
 
         public TaskList() { }

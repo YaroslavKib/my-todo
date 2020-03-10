@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using my_todo.Data;
 
-namespace my_todo.Data.Migrations
+namespace my_todo.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200310130315_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -301,6 +303,7 @@ namespace my_todo.Data.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Content")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("IsDone")
@@ -312,12 +315,7 @@ namespace my_todo.Data.Migrations
                     b.Property<int>("TaskListId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long?>("TaskListId1")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("TaskListId1");
 
                     b.ToTable("Tasks");
                 });
@@ -385,13 +383,6 @@ namespace my_todo.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("my_todo.Models.Task", b =>
-                {
-                    b.HasOne("my_todo.Models.TaskList", "TaskList")
-                        .WithMany("Tasks")
-                        .HasForeignKey("TaskListId1");
                 });
 #pragma warning restore 612, 618
         }

@@ -18,9 +18,28 @@ namespace my_todo.Services
         {
             _context.Tasks.Add(task);
             _context.SaveChanges();
-            
+
             return GetByOwnerId(task.OwnerId);
         }
+
+        public IEnumerable<Task> Delete(long id, string ownerId)
+        {
+            var task = _context.Tasks.First(t => t.Id == id);
+            _context.Tasks.Remove(task);
+
+            _context.SaveChanges();
+
+            return GetByOwnerId(ownerId);
+        }
+
+        public IEnumerable<Task> DeleteAll(string ownerId)
+        {
+            _context.Tasks.RemoveRange(_context.Tasks);
+            _context.SaveChanges();
+
+            return GetByOwnerId(ownerId);
+        }
+
         public IEnumerable<Task> GetByOwnerId(string id)
             => _context.Tasks.Where(t => t.OwnerId == id);
 
