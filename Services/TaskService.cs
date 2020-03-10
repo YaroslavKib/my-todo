@@ -1,4 +1,6 @@
 using my_todo.Data;
+using my_todo.Models;
+using System.Linq;
 
 namespace my_todo.Services
 {
@@ -10,5 +12,8 @@ namespace my_todo.Services
         {
             this._context = context;
         }
+
+        public Task GetById(long id)
+            => _context.Tasks.First(t => t.Id == id);
     }
 }

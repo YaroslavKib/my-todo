@@ -13,11 +13,11 @@ namespace my_todo.Controllers
     [Route("api/[controller]")]
     public class TaskController : ControllerBase
     {
-        private readonly ILogger<TaskController> _logger;
+        private readonly Services.TaskService _taskService;
 
-        public TaskController(ILogger<TaskController> logger)
+        public TaskController(Services.TaskService taskSerivce)
         {
-            _logger = logger;
+            _taskService = taskSerivce;
         }
 
         [HttpGet("")]
@@ -27,9 +27,9 @@ namespace my_todo.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult GetById(long id)
+        public ActionResult<Task> GetById(long id)
         {
-            return Problem("Not implemented");
+            return Ok(_taskService.GetById(id));
         }
 
         [HttpPut("")]
