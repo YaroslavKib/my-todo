@@ -11,6 +11,7 @@ using my_todo.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using my_todo.Services;
 
 namespace my_todo
 {
@@ -47,6 +48,9 @@ namespace my_todo
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddScoped<TaskListSerivce, TaskListSerivce>();
+            services.AddScoped<TaskService, TaskService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
