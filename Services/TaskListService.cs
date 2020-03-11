@@ -19,7 +19,7 @@ namespace my_todo.Services
             return _context.TaskLists.First(t => t.Id == id);
         }
 
-        public IEnumerable<TaskList> Put(long id, TaskList req)
+        public TaskList Put(long id, TaskList req)
         {
             var taskList = _context.TaskLists.FirstOrDefault(t => t.Id == id);
 
@@ -30,7 +30,7 @@ namespace my_todo.Services
 
             _context.SaveChanges();
 
-            return GetByOwnerId(taskList.OwnerId);
+            return taskList;
         }
         
         public IEnumerable<TaskList> GetByOwnerId(string ownerId)
@@ -38,12 +38,12 @@ namespace my_todo.Services
             return _context.TaskLists.Where(t => t.OwnerId == ownerId);
         }
 
-        public IEnumerable<TaskList> Add(TaskList taskList)
+        public TaskList Add(TaskList taskList)
         {
             _context.TaskLists.Add(taskList);
             _context.SaveChanges();
 
-            return GetByOwnerId(taskList.OwnerId);
+            return taskList;
         }
     }
 }

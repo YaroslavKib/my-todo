@@ -14,15 +14,15 @@ namespace my_todo.Services
             this._context = context;
         }
 
-        public IEnumerable<Task> Add(Task task)
+        public Task Add(Task task)
         {
             _context.Tasks.Add(task);
             _context.SaveChanges();
 
-            return GetByOwnerId(task.OwnerId);
+            return task;
         }
 
-        public IEnumerable<Task> Delete(long id, string ownerId)
+        public Task Delete(long id)
         {
             var task = _context.Tasks.FirstOrDefault(t => t.Id == id);
 
@@ -32,10 +32,10 @@ namespace my_todo.Services
             _context.Tasks.Remove(task);
             _context.SaveChanges();
 
-            return GetByOwnerId(ownerId);
+            return task;
         }
 
-        public IEnumerable<Task> Put(long id, Task req)
+        public Task Put(long id, Task req)
         {
             var task = _context.Tasks.FirstOrDefault(t => t.Id == id);
 
@@ -48,15 +48,13 @@ namespace my_todo.Services
 
             _context.SaveChanges();
 
-            return GetByOwnerId(task.OwnerId);
+            return task;
         }
 
-        public IEnumerable<Task> DeleteAll(string ownerId)
+        public void DeleteAll(string ownerId)
         {
             _context.Tasks.RemoveRange(_context.Tasks.Where(t => t.OwnerId == ownerId));
             _context.SaveChanges();
- 
-            return GetByOwnerId(ownerId);
         }
 
         public IEnumerable<Task> GetByOwnerId(string id)

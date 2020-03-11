@@ -70,13 +70,14 @@ namespace my_todo.Controllers
         [HttpDelete("")]
         public ActionResult Delete()
         {
-            return Ok(_taskService.DeleteAll(UserId));
+            _taskService.DeleteAll(UserId);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
         public ActionResult DeleteById(long id)
         {
-            var result = _taskService.Delete(id, UserId);
+            var result = _taskService.Delete(id);
 
             if (result == null)
                 return NotFound();
