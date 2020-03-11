@@ -21,7 +21,10 @@ namespace my_todo.Services
 
         public IEnumerable<TaskList> Put(long id, TaskList req)
         {
-            var taskList = _context.TaskLists.First(t => t.Id == id);
+            var taskList = _context.TaskLists.FirstOrDefault(t => t.Id == id);
+
+            if (taskList == default(TaskList))
+                return null;
 
             taskList.Name = req.Name;
 

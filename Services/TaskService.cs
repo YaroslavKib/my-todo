@@ -24,9 +24,12 @@ namespace my_todo.Services
 
         public IEnumerable<Task> Delete(long id, string ownerId)
         {
-            var task = _context.Tasks.First(t => t.Id == id);
-            _context.Tasks.Remove(task);
+            var task = _context.Tasks.FirstOrDefault(t => t.Id == id);
 
+            if (task == default(Task))
+                return null;
+
+            _context.Tasks.Remove(task);
             _context.SaveChanges();
 
             return GetByOwnerId(ownerId);
@@ -34,8 +37,11 @@ namespace my_todo.Services
 
         public IEnumerable<Task> Put(long id, Task req)
         {
-            var task = _context.Tasks.First(t => t.Id == id);
+            var task = _context.Tasks.FirstOrDefault(t => t.Id == id);
 
+            if (task == default(Task))
+                return null;
+                
             task.Content = req.Content;
             task.IsDone = req.IsDone;
             task.TaskListId = req.TaskListId;
@@ -57,6 +63,13 @@ namespace my_todo.Services
             => _context.Tasks.Where(t => t.OwnerId == id);
 
         public Task GetByTaskId(long id)
-            => _context.Tasks.First(t => t.Id == id);
+        {
+            var task = _context.Tasks.FirstOrDefault(t => t.Id == id);
+
+            if (task == default(Task))
+                return null;
+            else
+                return task;
+        }
     }
 }

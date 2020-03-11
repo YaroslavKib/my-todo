@@ -35,12 +35,20 @@ namespace my_todo.Controllers
         [HttpGet("{id}")]
         public ActionResult GetById(long id)
         {
-            return Ok(_service.GetById(id));
+            var result = _service.GetById(id);
+
+            if (result == null)
+                return NotFound();
+            else 
+                return Ok(result);
         }
 
         [HttpPost("")]
         public ActionResult Post(Models.TaskList taskList)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+                
             taskList.OwnerId = UserId;
             return Ok(_service.Add(taskList));
         }
@@ -48,7 +56,15 @@ namespace my_todo.Controllers
         [HttpPut("{id}")]
         public ActionResult Put(long id, Models.TaskList taskList)
         {
-            return Ok(_service.Put(id, taskList));
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = _service.Put(id, taskList);
+
+            if (result == null)
+                return NotFound();
+            
+            return Ok(result);
         }
 
         [HttpDelete("{id}")]
