@@ -6,6 +6,7 @@ namespace my_todo.Models
     {
         public long Id { get; set; }
         [Required]
+        [MinLength(1)]
         public string Content { get; set; }
         public string OwnerId { get; set; }
         public bool IsDone { get; set; }
