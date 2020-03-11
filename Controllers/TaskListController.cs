@@ -16,6 +16,10 @@ namespace my_todo.Controllers
         private readonly Services.TaskListService _service;
 
         private string UserId = "dev_test_owner_id"; // for testing
+        // private string UserId => User.Claims
+        //    .Where(c => c.Type == System.Security.Claims.ClaimTypes.NameIdentifier)
+        //    .Select(c => c.Value)
+        //    .First();
 
         public TaskListController(Services.TaskListService taskListService)
         {
