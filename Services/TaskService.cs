@@ -53,7 +53,7 @@ namespace my_todo.Services
 
         public IEnumerable<Task> DeleteAll(string ownerId)
         {
-            _context.Tasks.RemoveRange(_context.Tasks);
+            _context.Tasks.RemoveRange(_context.Tasks.Where(t => t.OwnerId == ownerId));
             _context.SaveChanges();
  
             return GetByOwnerId(ownerId);
